@@ -265,3 +265,18 @@ tr:nth-child(even) {
   text-decoration: none;
   cursor: pointer;
 }
+
+.bars_loader {
+  position: relative;
+  text-align: center;
+  width: 500px;
+  height: 300px;
+}
+
+.bars_loader svg {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}

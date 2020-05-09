@@ -10,18 +10,14 @@ import SideNav, {
 
 import {
   BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useRouteMatch,
-  useParams,
+  Route
 } from "react-router-dom";
 
 import RootComponent from "./components/RootComponent";
 
 // Be sure to include styles at some point, probably during your bootstraping
 import "@trendmicro/react-sidenav/dist/react-sidenav.css";
-
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import "./App.css";
 
 const navWidthCollapsed = 64;
@@ -31,30 +27,9 @@ export class App extends Component {
   state = {
     selected: "",
     expanded: false,
-    searchData: {},
     error: null,
     isLoading: true,
   };
-
-  fetchStoresData() {
-    // Where we're fetching data from
-    fetch(`/stores_data.json`)
-      // We get the API response and receive data in JSON format...
-      .then((response) => response.json())
-      // ...then we update the users state
-      .then((data) =>
-        this.setState({
-          searchData: data,
-          isLoading: false,
-        })
-      )
-      // Catch any errors we hit and update the app
-      .catch((error) => this.setState({ error, isLoading: false }));
-  }
-
-  componentDidMount() {
-    this.fetchStoresData();
-  }
 
   lastUpdateTime = new Date().toISOString();
 
@@ -124,7 +99,7 @@ export class App extends Component {
                   path="/"
                   exact
                   component={(props) => (
-                    <RootComponent searchData={this.state.searchData} />
+                    <RootComponent />
                   )}
                 />
                 <Route path="/about">
