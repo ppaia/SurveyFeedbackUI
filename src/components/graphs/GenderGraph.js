@@ -13,7 +13,7 @@ class GenderGraph extends Component {
 
     fetchGraphsData() {
         // Where we're fetching data from
-        fetch(`http://69d6fbf7.ngrok.io/rest/chatbot/survey/getSurevyCountByGender`)
+        fetch(process.env.REACT_APP_URL + `rest/chatbot/survey/getSurevyCountByGender`)
             // We get the API response and receive data in JSON format...
             .then((response) => response.json())
             // ...then we update the users state

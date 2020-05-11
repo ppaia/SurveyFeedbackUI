@@ -1,23 +1,16 @@
 import React, { Component } from "react";
-import Modal from "./Modal";
 import AgeGraph from "./graphs/AgeGraph";
 import SurveyGraph from "./graphs/SurveyGraph";
 import GenderGraph from "./graphs/GenderGraph";
 import SearchCountGraph from "./graphs/SearchCountGraph";
+import PincodeGraph from "./graphs/PincodeGraph";
 
 class RootComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      errors: [],
-      showPopup: false,
+      errors: []
     };
-  }
-
-  togglePopup() {
-    this.setState({
-      showPopup: !this.state.showPopup,
-    });
   }
 
   render() {
@@ -45,18 +38,10 @@ class RootComponent extends Component {
             <GenderGraph />
             <SearchCountGraph />
           </div>
+          <div className={"chart-container chart_sizes"}>
+            <PincodeGraph />
+          </div>
         </div>
-
-        {this.state.showPopup ? (
-          <Modal
-            data={{
-              id: 3,
-              name: "Vishu",
-              status: "open",
-            }}
-            closePopup={this.togglePopup.bind(this)}
-          />
-        ) : null}
       </div>
     );
   }

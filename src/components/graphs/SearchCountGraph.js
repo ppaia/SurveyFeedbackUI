@@ -13,7 +13,7 @@ class SearchCountGraph extends Component {
 
     fetchGraphsData() {
         // Where we're fetching data from
-        fetch(`http://69d6fbf7.ngrok.io/rest/chatbot/survey/getSurveyCountByQuestion/7`)
+        fetch(process.env.REACT_APP_URL + `rest/chatbot/survey/getSurveyCountByQuestion/7`)
             // We get the API response and receive data in JSON format...
             .then((response) => response.json())
             // ...then we update the users state

@@ -14,6 +14,7 @@ import {
 } from "react-router-dom";
 
 import RootComponent from "./components/RootComponent";
+import Surveys from "./components/Surveys";
 
 // Be sure to include styles at some point, probably during your bootstraping
 import "@trendmicro/react-sidenav/dist/react-sidenav.css";
@@ -68,14 +69,14 @@ export class App extends Component {
                     </NavIcon>
                     <NavText>Home</NavText>
                   </NavItem>
-                  <NavItem eventKey="about">
+                  <NavItem eventKey="surveys">
                     <NavIcon>
                       <i
                         className="fa fa-fw fa-user"
                         style={{ fontSize: "1.75em" }}
                       />
                     </NavIcon>
-                    <NavText>About</NavText>
+                    <NavText>Surveys</NavText>
                   </NavItem>
                   <NavItem eventKey="settings"> 
                     <NavIcon>
@@ -102,8 +103,8 @@ export class App extends Component {
                     <RootComponent />
                   )}
                 />
-                <Route path="/about">
-                  <About />
+                <Route path="/surveys">
+                  <Surveys />
                 </Route>
                 <Route path="/settings">
                   <Settings />
@@ -115,10 +116,6 @@ export class App extends Component {
       </Router>
     );
   }
-}
-
-function About() {
-  return <h2 className="mt-3 title_head">About</h2>;
 }
 
 function Settings() {

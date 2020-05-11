@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Chart } from "react-google-charts";
 import Loader from 'react-loader-spinner';
 
-class AgeGraph extends Component {
+class PincodeGraph extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -13,14 +13,14 @@ class AgeGraph extends Component {
 
     fetchGraphsData() {
         // Where we're fetching data from
-        fetch(process.env.REACT_APP_URL + `rest/chatbot/survey/getSurevyCountByAge`)
+        fetch(process.env.REACT_APP_URL + `rest/chatbot/survey/getSurveyCountByPincode`)
             // We get the API response and receive data in JSON format...
             .then((response) => response.json())
             // ...then we update the users state
             .then((data) => {
     
                 let requiredData = [
-                    ['Age', 'Count']
+                    ['Gender', 'Count']
                 ];
 
                 Object.keys(data).map(key => {
@@ -45,7 +45,7 @@ class AgeGraph extends Component {
             <Chart
                 width={'500px'}
                 height={'300px'}
-                chartType="Bar"
+                chartType="PieChart"
                 loader={<Loader
                     className="bars_loader"
                     type="Bars"
@@ -56,11 +56,10 @@ class AgeGraph extends Component {
                 />}
                 data={(this.state.graphData.length) ? this.state.graphData : ""}
                 options={{
-                    // Material design options
-                    chart: {
-                        title: 'Based on Age',
-                        subtitle: 'Counts based on Age',
-                    },
+                    title: 'Based on Gender',
+                    // Just add this option
+                    is3D: true,
+                    fontSize: 16,
                     titleTextStyle: {
                         color: "#504334",    // any HTML string color ('red', '#cc00cc')
                         fontName: "Roboto", // i.e. 'Times New Roman'
@@ -74,14 +73,20 @@ class AgeGraph extends Component {
                         textStyle: {
                             color: 'green',
                             fontSize: 16
-                        }
+                        },
+                        alignment: "center"
+                    },
+                    chartArea: {
+                        left: 10,
+                        top: '25%',
+                        width: '100%',
+                        height: '75%'
                     }
                 }}
-                // For tests
                 rootProps={{ 'data-testid': '2' }}
             />
         );
     }
 }
 
-export default AgeGraph;
+export default PincodeGraph;
